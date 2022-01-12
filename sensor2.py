@@ -5,7 +5,7 @@ a = True
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
 channel.exchange_declare(exchange='HomeAssistantExchange', exchange_type='fanout')
-channel.queue_declare(queue='Sensor1')
+channel.queue_declare(queue='Sensor2')
 
 count = 0 
 while a:
@@ -14,9 +14,9 @@ while a:
   
     if n==15:
         channel.basic_publish(exchange='HomeAssistantExchange',
-                      routing_key='Sensor1',
-                      body='Sensor1 - FOGO!!!')
-        print(" [x] Sent 'FOGO'")
+                      routing_key='Sensor2',
+                      body='Sensor2 - FUMACA!!!')
+        print(" [x] Sent 'FUMACA'")
         count = count + 1
         if count == 5:
             a = False
@@ -24,9 +24,9 @@ while a:
        
     else:
         channel.basic_publish(exchange='HomeAssistantExchange',
-                      routing_key='Sensor1',
-                      body='Sensor1 - Nao tem FOGO!!!')
-        print(" [x] Sent 'Nao tem FOGO'")
+                      routing_key='Sensor2',
+                      body='Sensor2 - Nao tem FUMACA!!!')
+        print(" [x] Sent 'Nao tem FUMACA'")
 
         
-    time.sleep(5)   
+    time.sleep(5)
